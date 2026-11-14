@@ -34,6 +34,7 @@ public class SecurityConfig {
 
     private static final String[] ROTAS_PUBLICAS = {
             "/api/auth/**",
+            "/error", // respostas de erro do próprio Spring (ex.: corpo do 403)
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v3/api-docs/**"
