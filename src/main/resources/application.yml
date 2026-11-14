@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: vendas-api
+  # Carrega o arquivo .env (se existir) como propriedades. Nenhuma senha fica no repositório.
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/vendas}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate   # o schema é criado pelo Flyway; o Hibernate só confere
+    properties:
+      hibernate:
+        default_batch_fetch_size: 50
+  data:
+    web:
+      pageable:
+        serialization-mode: via_dto
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiracao-minutos: ${JWT_EXPIRACAO_MINUTOS:60}
+  admin:
+    email: ${ADMIN_EMAIL:}
+    senha: ${ADMIN_PASSWORD:}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha

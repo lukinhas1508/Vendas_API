@@ -1,0 +1,16 @@
+# Segredos locais: nunca versionar
+.env
+
+# Maven
+target/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Sistema
+.DS_Store
