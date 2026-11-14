@@ -185,4 +185,14 @@ Os testes são unitários e não precisam de banco de dados:
 - **JWT**: token válido, adulterado, expirado e de outro segredo.
 - **Controller** de clientes com MockMvc: rotas, validação e códigos HTTP.
 
-O workflow em `.github/workflows/ci.yml` compila o projeto e roda os testes a cada push.
+O workflow em `.github/workflows/ci.yml` roda a cada push e tem duas etapas:
+
+1. **Testes unitários**: compila o projeto e roda `mvn verify`.
+2. **Teste de fumaça**: sobe a API contra um PostgreSQL real e executa `scripts/smoke-test.sh`,
+   que percorre o fluxo completo (login, clientes, produtos, pedidos, estoque, relatórios e permissões).
+
+Para rodar o teste de fumaça na sua máquina, com a API no ar e o banco vazio:
+
+```bash
+ADMIN_EMAIL=admin@vendas.local ADMIN_PASSWORD=sua-senha ./scripts/smoke-test.sh
+```
